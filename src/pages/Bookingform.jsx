@@ -1,58 +1,55 @@
+import { useState } from "react";
+import { createBooking } from "../api/bookingAPI";
+
 export default function BookingForm() {
+  const [formData, setFormData] = useState({
+    destination: "",
+    checkin: "",
+    checkout: "",
+    guests: 1,
+    rooms: 1,
+    roomtype: ""
+  });
+
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await createBooking(formData);
+      alert("Booking successful!");
+      setFormData({ destination: "", checkin: "", checkout: "", guests: 1, rooms: 1, roomtype: "" });
+    } catch (err) {
+      console.error(err.response || err);
+      alert("Booking failed! Check console for details.");
+    }
+  };
+
   return (
-    <div className="p-6 flex justify-center">
-      <form className="bg-blue-100 shadow-xl rounded-xl p-8 w-full max-w-md space-y-6">
-        <h1 className="text-3xl font-bold text-center text-blue-700">Dream Stay</h1>
-        <h2 className="text-xl font-bold text-center text-gray-700">Book Your Stay</h2>
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-blue-50 flex items-center justify-center p-6">
+      <form onSubmit={handleSubmit} className="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-lg space-y-6">
+        <h1 className="text-4xl font-bold text-center text-blue-700">Dream Stay</h1>
+        <p className="text-center text-gray-500">Book your perfect hotel stay in Nepal</p>
 
-        {/* Destination */}
-        <div className="flex flex-col">
-          <label htmlFor="destination" className="mb-1 text-gray-700">Destination</label>
-          <input
-            type="text"
-            id="destination"
-            placeholder="eg. Pokhara, Kathmandu, etc"
-            className="placeholder:text-xs sm:placeholder:text-sm border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            required
-          />
+        <input id="destination" value={formData.destination} onChange={handleChange} placeholder="Destination" className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" required />
+        <div className="flex gap-4">
+          <input type="date" id="checkin" value={formData.checkin} onChange={handleChange} className="flex-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" required />
+          <input type="date" id="checkout" value={formData.checkout} onChange={handleChange} className="flex-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" required />
         </div>
+        <div className="flex gap-4">
+          <input type="number" id="guests" min="1" max="20" value={formData.guests} onChange={handleChange} className="flex-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" placeholder="Guests" required />
+          <input type="number" id="rooms" min="1" max="10" value={formData.rooms} onChange={handleChange} className="flex-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" placeholder="Rooms" required />
+        </div>
+        <select id="roomtype" value={formData.roomtype} onChange={handleChange} className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" required>
+          <option value="">Select Room Type</option>
+          <option value="single">Single</option>
+          <option value="double">Double</option>
+          <option value="suite">Suite</option>
+          <option value="family">Family</option>
+        </select>
 
-        {/* Check-in & Check-out */}
-        <div className="flex flex-col">
-          <label htmlFor="checkin" className="mb-1 text-gray-700">Check-in Date</label>
-          <input type="date" id="checkin" className="border rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" required />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="checkout" className="mb-1 text-gray-700">Check-out Date</label>
-          <input type="date" id="checkout" className="border rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" required />
-        </div>
-
-        {/* Guests & Rooms */}
-        <div className="flex flex-col">
-          <label htmlFor="guests" className="mb-1 text-gray-700">Number of Guests</label>
-          <input type="number" id="guests" min="1" max="20" defaultValue="1" className="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" required />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="rooms" className="mb-1 text-gray-700">Number of Rooms</label>
-          <input type="number" id="rooms" min="1" max="10" defaultValue="1" className="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" required />
-        </div>
-
-        {/* Room Type */}
-        <div className="flex flex-col">
-          <label htmlFor="roomtype" className="mb-1 text-gray-700">Room Type</label>
-          <select id="roomtype" className="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" required>
-            <option value="">Select Room</option>
-            <option value="single">Single</option>
-            <option value="double">Double</option>
-            <option value="suite">Suite</option>
-            <option value="family">Family</option>
-            <option value="more">More</option>
-          </select>
-        </div>
-
-        <button type="submit" className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 rounded-lg">
-          Book Now
-        </button>
+        <button type="submit" className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl text-lg">Book Now</button>
       </form>
     </div>
   );

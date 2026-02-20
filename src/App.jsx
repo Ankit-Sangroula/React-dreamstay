@@ -1,25 +1,21 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
-import BookingForm from "./pages/BookingForm"; // your correct file name
 import Search from "./pages/Search";
-import History from "./pages/History";
+import BookingHistory from "./pages/BookingHistory";
 import Testimonial from "./pages/Testimonial";
+import BookingForm from "./pages/Bookingform";
 
-function App() {
+export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="booking" element={<BookingForm />} />
-          <Route path="search" element={<Search />} />
-          <Route path="history" element={<History />} />
-          <Route path="testimonial" element={<Testimonial />} />
-        </Route>
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="booking" element={<BookingForm />} />
+        <Route path="search" element={<Search />} />
+        <Route path="bookinghistory" element={<BookingHistory />} />
+        <Route path="testimonial" element={<Testimonial />} />
+      </Route>
+    </Routes>
   );
 }
-
-export default App;
