@@ -10,7 +10,7 @@ export default function BookingHistory() {
         const res = await getBookings();
         setBookings(res.data);
       } catch (err) {
-        console.error("Error fetching bookings:", err.response || err);
+        console.error(err.response || err);
       }
     };
     fetchBookings();
@@ -22,7 +22,7 @@ export default function BookingHistory() {
       const res = await getBookings();
       setBookings(res.data);
     } catch (err) {
-      console.error("Cancel booking error:", err.response || err);
+      console.error(err.response || err);
       alert("Failed to cancel booking");
     }
   };
@@ -37,39 +37,27 @@ export default function BookingHistory() {
       document.body.appendChild(link);
       link.click();
     } catch (err) {
-      console.error("Invoice download error:", err);
+      console.error(err);
       alert("Invoice download failed");
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <h2 className="text-3xl font-bold mb-6 text-center">Booking History</h2>
+    <div className="space-y-4">
       {bookings.map((b) => (
-        <div
-          key={b._id}
-          className="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow mb-4 flex justify-between items-center"
-        >
+        <div key={b._id} className="bg-white p-6 rounded-xl shadow flex justify-between items-center hover:shadow-2xl transition">
           <div>
-            <h3 className="font-semibold">{b.destination}</h3>
-            <p className="text-gray-500">
-              {new Date(b.checkin).toLocaleDateString()} - {new Date(b.checkout).toLocaleDateString()}
-            </p>
-            <p className="text-blue-600 mt-2">{b.status}</p>
+            <h3 className="font-semibold text-lg">{b.destination}</h3>
+            <p className="text-gray-500">{new Date(b.checkin).toLocaleDateString()} - {new Date(b.checkout).toLocaleDateString()}</p>
+            <p className={`mt-1 font-semibold ${b.status==="Cancelled" ? "text-red-500" : "text-green-600"}`}>{b.status}</p>
           </div>
           <div className="flex gap-2">
             {b.status !== "Cancelled" && (
-              <button
-                onClick={() => handleCancel(b._id)}
-                className="bg-red-500 hover:bg-red-400 text-white px-3 py-1 rounded"
-              >
+              <button onClick={() => handleCancel(b._id)} className="bg-red-500 hover:bg-red-400 text-white px-3 py-1 rounded">
                 Cancel
               </button>
             )}
-            <button
-              onClick={() => handleDownload(b._id)}
-              className="bg-green-500 hover:bg-green-400 text-white px-3 py-1 rounded"
-            >
+            <button onClick={() => handleDownload(b._id)} className="bg-green-500 hover:bg-green-400 text-white px-3 py-1 rounded">
               Invoice
             </button>
           </div>

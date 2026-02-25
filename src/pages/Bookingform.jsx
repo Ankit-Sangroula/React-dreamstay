@@ -27,21 +27,35 @@ export default function BookingForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-blue-50 flex items-center justify-center p-6">
-      <form onSubmit={handleSubmit} className="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-lg space-y-6">
-        <h1 className="text-4xl font-bold text-center text-blue-700">Dream Stay</h1>
-        <p className="text-center text-gray-500">Book your perfect hotel stay in Nepal</p>
+    <div className="bg-gradient-to-b from-blue-100 to-blue-50 p-6 rounded-2xl shadow-xl">
+      <h2 className="text-2xl font-bold text-blue-700 mb-4 text-center">Book Your Stay</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          id="destination"
+          value={formData.destination}
+          onChange={handleChange}
+          placeholder="Destination"
+          className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-400"
+          required
+        />
 
-        <input id="destination" value={formData.destination} onChange={handleChange} placeholder="Destination" className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" required />
         <div className="flex gap-4">
           <input type="date" id="checkin" value={formData.checkin} onChange={handleChange} className="flex-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" required />
           <input type="date" id="checkout" value={formData.checkout} onChange={handleChange} className="flex-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" required />
         </div>
-        <div className="flex gap-4">
+
+        <div className="flex gap-4 items-center">
           <input type="number" id="guests" min="1" max="20" value={formData.guests} onChange={handleChange} className="flex-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" placeholder="Guests" required />
           <input type="number" id="rooms" min="1" max="10" value={formData.rooms} onChange={handleChange} className="flex-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" placeholder="Rooms" required />
         </div>
-        <select id="roomtype" value={formData.roomtype} onChange={handleChange} className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-400" required>
+
+        <select
+          id="roomtype"
+          value={formData.roomtype}
+          onChange={handleChange}
+          className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-400"
+          required
+        >
           <option value="">Select Room Type</option>
           <option value="single">Single</option>
           <option value="double">Double</option>
@@ -49,7 +63,9 @@ export default function BookingForm() {
           <option value="family">Family</option>
         </select>
 
-        <button type="submit" className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl text-lg">Book Now</button>
+        <button type="submit" className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl text-lg">
+          Book Now
+        </button>
       </form>
     </div>
   );
