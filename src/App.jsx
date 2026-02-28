@@ -1,26 +1,35 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
+
 import Home from "./pages/Home";
-import BookingPage from "./pages/BookingPage"; // combined form + map + history
+import BookingPage from "./pages/BookingPage";
 import Search from "./pages/Search";
 import BookingHistory from "./pages/BookingHistory";
 import Testimonial from "./pages/Testimonial";
-import BookingForm from "./pages/Bookingform";
+import BookingForm from "./pages/BookingForm";
 
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+
+        {/* Home */}
         <Route index element={<Home />} />
 
-        {/* Booking page with Form + Map + History */}
-        <Route path="bookingpage" element={<BookingPage />} />
+        {/* Main Booking System Page (Discovery + Map + History Combined) */}
+        <Route path="booking" element={<BookingPage />} />
 
-        {/* Optional: individual pages if needed */}
-        <Route path="booking" element={<BookingForm />} />
-        <Route path="search" element={<Search />} />
-        <Route path="bookinghistory" element={<BookingHistory />} />
-        <Route path="testimonial" element={<Testimonial />} />
+        {/* Optional Standalone Pages */}
+        <Route path="booking/form" element={<BookingForm />} />
+        <Route path="booking/search" element={<Search />} />
+        <Route path="booking/history" element={<BookingHistory />} />
+
+        {/* Testimonials */}
+        <Route path="testimonials" element={<Testimonial />} />
+
+        {/* Fallback Route */}
+        <Route path="*" element={<Navigate to="/" />} />
+
       </Route>
     </Routes>
   );
