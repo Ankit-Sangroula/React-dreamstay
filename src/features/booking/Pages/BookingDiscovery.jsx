@@ -3,7 +3,7 @@ import bookingsData from "../data/dummyBookings";
 import BookingCard from "../components/BookingCard";
 import BookingSearchBar from "../components/BookingSearchBar";
 import MapSection from "../components/MapSection";
-import BookingDetailsModal from "../components/BookingDetailsModal";
+import BookingDetailModal from "../components/BookingDetailModal"; // FIXED
 
 export default function BookingDiscovery() {
   const [search, setSearch] = useState("");
@@ -36,7 +36,7 @@ export default function BookingDiscovery() {
       </div>
 
       {selected && (
-        <BookingDetailsModal
+        <BookingDetailModal   
           booking={selected}
           onClose={() => setSelected(null)}
         />

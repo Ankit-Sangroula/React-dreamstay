@@ -1,36 +1,31 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Layout from "./components/Layout";
+import Layout from "./components/home/Layout";
 
-import Home from "./pages/Home";
-import BookingPage from "./pages/BookingPage";
-import Search from "./pages/Search";
-import BookingHistory from "./pages/BookingHistory";
-import Testimonial from "./pages/Testimonial";
-import BookingForm from "./pages/BookingForm";
+import Home from "./features/booking/pages/Home";
+import BookingDiscovery from "./features/booking/pages/BookingDiscovery";
+import BookingHistory from "./features/booking/pages/BookingHistory";
 
-export default function App() {
+function App() {
   return (
     <Routes>
+      {/* Layout Wrapper */}
       <Route path="/" element={<Layout />}>
-
+        
         {/* Home */}
         <Route index element={<Home />} />
 
-        {/* Main Booking System Page (Discovery + Map + History Combined) */}
-        <Route path="booking" element={<BookingPage />} />
+        {/* Booking Section */}
+        <Route path="booking">
+          <Route index element={<BookingDiscovery />} />
+          <Route path="history" element={<BookingHistory />} />
+        </Route>
 
-        {/* Optional Standalone Pages */}
-        <Route path="booking/form" element={<BookingForm />} />
-        <Route path="booking/search" element={<Search />} />
-        <Route path="booking/history" element={<BookingHistory />} />
-
-        {/* Testimonials */}
-        <Route path="testimonials" element={<Testimonial />} />
-
-        {/* Fallback Route */}
-        <Route path="*" element={<Navigate to="/" />} />
-
+        {/* 404 Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      
       </Route>
     </Routes>
   );
 }
+
+export default App;
