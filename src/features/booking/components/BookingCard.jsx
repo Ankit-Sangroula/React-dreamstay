@@ -1,13 +1,9 @@
 export default function BookingCard({ booking, onView }) {
   return (
     <div className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition">
-      <h3 className="text-xl font-bold mb-2">
-        {booking.hotel}
-      </h3>
+      <h3 className="text-xl font-bold">{booking.hotel}</h3>
       <p className="text-gray-600">{booking.location}</p>
-      <p className="mt-2 font-semibold">
-        ₹{booking.price}
-      </p>
+      <p className="mt-2 font-semibold">₹{booking.price}</p>
 
       <span
         className={`inline-block mt-3 px-3 py-1 text-sm rounded-full ${
@@ -21,7 +17,7 @@ export default function BookingCard({ booking, onView }) {
 
       <button
         onClick={() => onView(booking)}
-        className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+        className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg"
       >
         View Details
       </button>

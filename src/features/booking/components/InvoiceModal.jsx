@@ -2,9 +2,8 @@ export default function InvoiceModal({ booking, onClose }) {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
       <div className="bg-white p-8 rounded-2xl w-full max-w-md">
-        <h2 className="text-xl font-bold mb-4">
-          Invoice
-        </h2>
+
+        <h2 className="text-xl font-bold mb-4">Invoice</h2>
 
         <p>Hotel: {booking.hotel}</p>
         <p>Location: {booking.location}</p>

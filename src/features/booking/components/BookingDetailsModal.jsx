@@ -1,5 +1,5 @@
-import InvoiceModal from "./InvoiceModal";
 import { useState } from "react";
+import InvoiceModal from "./InvoiceModal";
 
 export default function BookingDetailsModal({ booking, onClose }) {
   const [showInvoice, setShowInvoice] = useState(false);
@@ -8,6 +8,7 @@ export default function BookingDetailsModal({ booking, onClose }) {
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
       <div className="bg-white p-8 rounded-2xl w-full max-w-lg">
+
         <h2 className="text-2xl font-bold mb-4">
           {booking.hotel}
         </h2>
@@ -37,6 +38,7 @@ export default function BookingDetailsModal({ booking, onClose }) {
           >
             Generate Invoice
           </button>
+
           <button
             onClick={onClose}
             className="flex-1 bg-gray-300 py-2 rounded-lg"
@@ -46,7 +48,10 @@ export default function BookingDetailsModal({ booking, onClose }) {
         </div>
 
         {showInvoice && (
-          <InvoiceModal booking={booking} onClose={() => setShowInvoice(false)} />
+          <InvoiceModal
+            booking={booking}
+            onClose={() => setShowInvoice(false)}
+          />
         )}
       </div>
     </div>
