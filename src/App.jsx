@@ -1,9 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./layout/Layout";
 
-import Home from "./features/booking/pages/Home";
-import BookingDiscovery from "./features/booking/pages/BookingDiscovery";
-import BookingHistory from "./features/booking/pages/BookingHistory";
+import Home from "./pages/Home";
+import BookingDiscovery from "./pages/BookingDiscovery";
+import BookingHistory from "./pages/BookingHistory";
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
+
       </Route>
     </Routes>
   );

@@ -1,25 +1,17 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 
 export default function Layout() {
   return (
     <>
-      <nav className="fixed top-0 w-full bg-white shadow-md z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between">
-          <h1 className="text-2xl font-bold text-blue-600">
-            DreamStay
-          </h1>
-
-          <div className="flex gap-6 font-medium">
-            <Link to="/">Home</Link>
-            <Link to="/booking">Discover</Link>
-            <Link to="/booking/history">History</Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="pt-24">
         <Outlet />
       </div>
+
+      <Footer />
     </>
   );
 }

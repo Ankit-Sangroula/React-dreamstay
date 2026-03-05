@@ -15,6 +15,22 @@ const bookings = [
     status: "Pending",
     date: "2026-04-02",
   },
+  {
+    id: 3,
+    hotel: "Royal Palace Hotel",
+    location: "Jaipur",
+    price: 7999,
+    status: "Confirmed",
+    date: "2026-05-10",
+  },
+  {
+    id: 4,
+    hotel: "City Lights Hotel",
+    location: "Mumbai",
+    price: 5999,
+    status: "Cancelled",
+    date: "2026-06-01",
+  },
 ];
 
 export default bookings;
